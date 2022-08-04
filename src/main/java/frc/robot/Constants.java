@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import frc.robot.util.Gains;
 
 /**
@@ -79,7 +80,7 @@ public final class Constants {
         public static class HoodConstants {
             public static int hoodPort = 7;
             public static double hoodGearRatio = 107520;
-            public static Gains kGains1 = new Gains(0.3, 0, 0, 0, 0, 1.0);
+            public static Gains kGains1 = new Gains(1, 0, 0.5, 0, 0, 1.0);
 
             public static double angularPositionIncrement(double angle) {
                 return (angle / 360) * HoodConstants.hoodGearRatio;
@@ -116,10 +117,25 @@ public final class Constants {
         public static final class JoySContants {
 
             public static final int joyS_ID = 0;
-            public static final int TRANSLATION_X_AXIS = 5;
-            public static final int TRANSLATION_Y_AXIS = 4;
-            public static final int ROTATION_AXIS = 0;
+            public static final int TRANSLATION_X_AXIS = 1;
+            public static final int TRANSLATION_Y_AXIS = 0;
+            public static final int ROTATION_AXIS = 4;
 
         }
+    }
+
+    public static final class AutoConstants {
+        public static final double kMaxSpeedMetersPerSecond = 3;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+        public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
+        public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
+
+        public static final double kPXController = 1;
+        public static final double kPYController = 1;
+        public static final double kPThetaController = 1;
+
+        // Constraint for the motion profiled robot angle controller
+        public static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(
+                kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
     }
 }

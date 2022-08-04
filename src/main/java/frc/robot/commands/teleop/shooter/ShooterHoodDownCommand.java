@@ -4,11 +4,13 @@
 
 package frc.robot.commands.teleop.shooter;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
 
 public class ShooterHoodDownCommand extends CommandBase {
   private ShooterSubsystem shooterSubsystem;
+  private double timer, lastTime = 0;
 
   /** Creates a new ShooterHoodDownCommand. */
   public ShooterHoodDownCommand(ShooterSubsystem shooterSubsystem) {
@@ -22,12 +24,13 @@ public class ShooterHoodDownCommand extends CommandBase {
   @Override
   public void initialize() {
     this.shooterSubsystem.setHoodDownward(true);
+    this.timer = Timer.getFPGATimestamp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    this.lastTime = (Timer.getFPGATimestamp() - this.timer);
   }
 
   // Called once the command ends or is interrupted.
@@ -39,6 +42,6 @@ public class ShooterHoodDownCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (this.lastTime > 0.1);
   }
 }

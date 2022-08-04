@@ -66,8 +66,8 @@ public class ShooterSubsystem extends SubsystemBase {
     this.talonFlywheels.configPeakOutputReverse(-1, ShooterConstants.kTimeoutMs);
     this.talonHood.configNominalOutputForward(0, ShooterConstants.kTimeoutMs);
     this.talonHood.configNominalOutputReverse(0, ShooterConstants.kTimeoutMs);
-    this.talonHood.configPeakOutputForward(0.05, ShooterConstants.kTimeoutMs);
-    this.talonHood.configPeakOutputReverse(-0.05, ShooterConstants.kTimeoutMs);
+    this.talonHood.configPeakOutputForward(0.025, ShooterConstants.kTimeoutMs);
+    this.talonHood.configPeakOutputReverse(-0.025, ShooterConstants.kTimeoutMs);
     this.talonTurret.configNominalOutputForward(0, ShooterConstants.kTimeoutMs);
     this.talonTurret.configNominalOutputReverse(0, ShooterConstants.kTimeoutMs);
     this.talonTurret.configPeakOutputForward(0.75, ShooterConstants.kTimeoutMs);
